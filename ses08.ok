@@ -1,0 +1,20 @@
+{
+    "name": "Session 8",
+    "endpoint": "",
+    "src": [
+	"ses08.py",
+	"ses08_extra.py"
+    ],
+    "tests": {
+      "tests/recap.py": "ok_test",
+      "ses08.py:lecture_graph": "doctest",
+      "ses08.py:dijkstra": "doctest",
+      "ses08_extra.py:dijkstra_heap": "doctest"
+    },
+    "protocols": [
+        "file_contents",
+        "grading",
+        "analytics",
+        "backup"
+    ]
+}

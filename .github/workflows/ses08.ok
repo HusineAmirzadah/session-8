@@ -1,0 +1,21 @@
+{
+  "name": "Session 8",
+  "endpoint": "icbs/busi97284/fa21/ses08",
+  "src": [
+    "ses08.py"
+  ],
+  "tests": {
+    "tests/test_ses08_solution_dijkstra_0.py": "ok_test",
+    "tests/test_ses08_solution_dijkstra_1.py": "ok_test",
+    "tests/test_ses08_solution_lecture_graph_0.py": "ok_test",
+    "tests/test_ses08_solution_lecture_graph_1.py": "ok_test",
+    "tests/test_ses08_solution_lecture_graph_2.py": "ok_test",
+    "tests/test_ses08_solution_lecture_graph_3.py": "ok_test"
+  },
+  "protocols": [
+    "file_contents",
+    "grading",
+    "analytics",
+    "backup"
+  ]
+}

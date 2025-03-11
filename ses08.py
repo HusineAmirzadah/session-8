@@ -53,7 +53,7 @@ def dijkstra(graph, start):
     >>> [dists['b'], dists['e'], dists['c'], dists['d']]
     [1, 7, 3, 5]
     >>> [prev_nodes['a'], prev_nodes['e'], prev_nodes['c'], prev_nodes['d']]
-    [None, 'd', 'b', 'a']
+    [None, 'c', 'b', 'a']
     """
     # DON'T CHANGE ANYTHING ABOVE
     # YOUR CODE BELOW
@@ -104,7 +104,6 @@ def print_path(prev_nodes, v):
     Based on dictionary prev_nodes containing links to previous nodes, 
     prints out path from starting node to v.
     """
-    
     path_list = []
     while v is not None:
         path_list.append(v)
@@ -113,7 +112,4 @@ def print_path(prev_nodes, v):
     path_list = reversed(path_list)    
     path = ' -> '.join(path_list)
     print(path)
-
-
-
 

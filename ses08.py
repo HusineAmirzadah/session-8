@@ -21,12 +21,13 @@ def lecture_graph():
     [2, 2, 2, 1, 0]
     """
     distances = {
-        'a': {},
+        'a': {'b': 1, 'd': 5},
         'b': {'c': 2, 'd': 5},
-        'c': {},
-        'd': {},
+        'c': {'a': 2, 'e': 6},
+        'd': {'e': 2},
         'e': {}
     }
+    
     return distances
 
 
@@ -64,40 +65,43 @@ def dijkstra(graph, start):
     X = [start]
     
     # Previous nodes
-    prev_nodes = ...
+    prev_nodes = {start: None}  # Start node has no previous node
     
-    # Shortest distances to all nodes from s
+    # Shortest distances to all nodes from start
     A = dict() 
     for node in graph.get_nodes(): 
-        A[node] = float('Inf') # initialize to "infinity"
+        A[node] = float('Inf')  # Initialize to "infinity"
         
-    A[start] = 0 # distance zero to itself
+    A[start] = 0  # Distance zero to itself
 
     # Main loop
     # Loop while we haven't visited all nodes
     while len(X) < len(graph.get_nodes()): 
          
-        # Store mininimum edge and distance when looping
-        min_edge = [] # list [src, dest, weight]
+        # Store minimum edge and distance when looping
+        min_edge = []  # List [src, dest, weight]
         min_dist = float('inf')
         
         # Loop through all edges starting in X and not ending in X
-        # Find minimum Dijksta score
+        # Find minimum Dijkstra score
         for src in X:
-            for dest, weight in graph.children_of(src): # edges starting from src
-                if dest not in X: # edge not ending in X
-                    # Update minimum-Dijkstra-score edge if find one
+            for dest, weight in graph.children_of(src):  # Edges starting from src
+                if dest not in X:  # Edge not ending in X
+                    # Update minimum-Dijkstra-score edge if found
                     if A[src] + weight < min_dist: 
                         min_edge = [src, dest, weight] 
                         min_dist = A[src] + weight 
+        
         # Update A[min_e_dest] = A[min_e_source] + A[min_e_weight]        
         A[min_edge[1]] = A[min_edge[0]] + min_edge[2]
         
         # Add destination node from min edge to visited nodes
         X.append(min_edge[1])  
+        
+        # Update previous node for the destination
+        prev_nodes[min_edge[1]] = min_edge[0]
     
-    return A
-
+    return A, prev_nodes
 
 def print_path(prev_nodes, v):
     """ 

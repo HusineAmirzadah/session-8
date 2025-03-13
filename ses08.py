@@ -56,49 +56,36 @@ def dijkstra(graph, start):
     >>> [prev_nodes['a'], prev_nodes['e'], prev_nodes['c'], prev_nodes['d']]
     [None, 'c', 'b', 'a']
     """
-    # DON'T CHANGE ANYTHING ABOVE
-    # YOUR CODE BELOW
     
-    # Initialize algorithm
     
-    # Visited nodes X initially just the start  
     X = [start]
     
-    # Previous nodes
-    prev_nodes = {start: None}  # Start node has no previous node
+    prev_nodes = {start: None}  
     
-    # Shortest distances to all nodes from start
     A = dict() 
     for node in graph.get_nodes(): 
-        A[node] = float('Inf')  # Initialize to "infinity"
+        A[node] = float('Inf')  
         
-    A[start] = 0  # Distance zero to itself
+    A[start] = 0  
 
-    # Main loop
-    # Loop while we haven't visited all nodes
+   
     while len(X) < len(graph.get_nodes()): 
          
-        # Store minimum edge and distance when looping
         min_edge = []  # List [src, dest, weight]
         min_dist = float('inf')
         
-        # Loop through all edges starting in X and not ending in X
-        # Find minimum Dijkstra score
+        
         for src in X:
-            for dest, weight in graph.children_of(src):  # Edges starting from src
-                if dest not in X:  # Edge not ending in X
-                    # Update minimum-Dijkstra-score edge if found
+            for dest, weight in graph.children_of(src): 
+                
                     if A[src] + weight < min_dist: 
                         min_edge = [src, dest, weight] 
                         min_dist = A[src] + weight 
-        
-        # Update A[min_e_dest] = A[min_e_source] + A[min_e_weight]        
+              
         A[min_edge[1]] = A[min_edge[0]] + min_edge[2]
         
-        # Add destination node from min edge to visited nodes
         X.append(min_edge[1])  
         
-        # Update previous node for the destination
         prev_nodes[min_edge[1]] = min_edge[0]
     
     return A, prev_nodes
